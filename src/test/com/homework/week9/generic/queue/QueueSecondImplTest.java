@@ -1,6 +1,5 @@
 package com.homework.week9.generic.queue;
 
-import com.classroom.week8.exception.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,13 +7,12 @@ import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class QueueImplTest {
-
+class QueueSecondImplTest {
     private Queue<String> testObject;
 
     @BeforeEach
     public void setUp() {
-        testObject = new QueueImpl<String>();
+        testObject = new QueueSecondImpl<String>();
     }
 
     @Test
