@@ -15,7 +15,7 @@ public class ArrayList<T> implements List<T> {
     @Override
     public T get(int index) {
         if (index < 0) {
-            throw new IllegalArgumentException("List item can't have negative number. you set the "+ index);
+            throw new IllegalArgumentException("List item can't have negative number. you set the " + index);
         }
         return (T) items[(index != 0) ? --index : index];
     }
