@@ -2,12 +2,7 @@ package com.homework.week9.invoice.service;
 
 
 public class InvoiceService {
-    private Invoice[] invoices;
-
-    public InvoiceService(){
-        invoices = load();
-    }
-
+    private Invoice[] invoices = load();
 
     public Invoice[] load() {
         InvoiceReader invoiceReader = new InvoiceReader();
