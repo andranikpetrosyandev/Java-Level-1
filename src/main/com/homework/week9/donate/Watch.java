@@ -1,13 +1,19 @@
 package com.homework.week9.donate;
 
-public class Watch  extends Product{
+public class Watch extends Product {
 
-    public Watch(double price){
+    public Watch(double price) {
         super();
-        this.price = price;
+        this.setPrice(price);
     }
+
     @Override
     public double donationAmount() {
-        return price * 5 / 100;
+        return getPrice() * 5 / 100;
+    }
+
+    @Override
+    public String toString() {
+        return "Watch";
     }
 }

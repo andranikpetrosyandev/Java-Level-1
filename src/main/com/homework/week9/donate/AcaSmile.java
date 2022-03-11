@@ -7,7 +7,7 @@ public class AcaSmile<T extends Donatable> {
     private int size = 0;
 
     void buyWithDonation(T t) {
-        list[size++] = t.getClass().getSimpleName() + " successfully purchased and donation amount is " + t.donationAmount();
+        list[size++] = t.toString() + " successfully purchased and donation amount is " + t.donationAmount();
         donateAmount += t.donationAmount();
     }
 

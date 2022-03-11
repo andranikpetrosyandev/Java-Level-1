@@ -1,5 +1,5 @@
 package com.homework.week9.donate;
 
-public interface Donatable<T> {
+public interface Donatable {
     double donationAmount();
 }

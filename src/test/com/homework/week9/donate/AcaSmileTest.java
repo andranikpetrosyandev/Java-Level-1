@@ -9,8 +9,12 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AcaSmileTest {
-    private AcaSmile<Product> testObject = new AcaSmile<>();
+    private AcaSmile<Product> testObject;
 
+    @BeforeEach
+    public void setUp(){
+        testObject =  new AcaSmile<>();
+    }
 
     @Test
     public void testWhenNothingIsBought() {
