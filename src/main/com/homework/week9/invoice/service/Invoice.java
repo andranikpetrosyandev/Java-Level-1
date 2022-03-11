@@ -6,37 +6,32 @@ public class Invoice {
     private InvoiceType type;
     private String code;
 
+    public Invoice(String id, double amount, InvoiceType type, String code) {
+        this.id = id;
+        this.amount = amount;
+        this.type = type;
+        this.code = code;
+    }
+
+
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
 
     public InvoiceType getInvoiceType() {
         return type;
-    }
-
-    public void setInvoiceType(InvoiceType invoiceType) {
-        this.type = invoiceType;
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     @Override
     public String toString() {

@@ -15,11 +15,11 @@ public enum InvoiceType {
         this.name = name();
     }
 
-    public static InvoiceType getEnumByString(String code) {
-        for (InvoiceType e : InvoiceType.values()) {
-            if (e.name.equals(code)) return e;
-        }
-        return null;
-    }
+//    public static InvoiceType getEnumByString(String code) {
+//        for (InvoiceType e : InvoiceType.values()) {
+//            if (e.name.equals(code)) return e;
+//        }
+//        return null;
+//    }
 
 }

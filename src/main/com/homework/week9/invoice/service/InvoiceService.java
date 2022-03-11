@@ -2,6 +2,13 @@ package com.homework.week9.invoice.service;
 
 
 public class InvoiceService {
+    private Invoice[] invoices;
+
+    public InvoiceService(){
+        invoices = load();
+    }
+
+
     public Invoice[] load() {
         InvoiceReader invoiceReader = new InvoiceReader();
         return invoiceReader.read();
@@ -9,7 +16,6 @@ public class InvoiceService {
 
     public long totalAmountByType(Enum type) {
         long sum = 0;
-        Invoice[] invoices = load();
         for (Invoice invoice : invoices) {
             if (invoice.getInvoiceType() == type) {
                 sum += invoice.getAmount();
@@ -20,7 +26,6 @@ public class InvoiceService {
     }
 
     public Invoice[] getByType(InvoiceType type) {
-        Invoice[] invoices = load();
         Invoice[] filteredArrayByInvoiceType = new Invoice[invoices.length];
         int arrayLengthCounter = 0;
         for (int i = 0; i < invoices.length; i++) {
@@ -33,7 +38,6 @@ public class InvoiceService {
     }
 
     public Invoice[] getByTypeAndCode(InvoiceType type, String code) {
-        Invoice[] invoices = load();
         Invoice[] filteredArrayByInvoiceType = new Invoice[invoices.length];
         int arrayLengthCounter = 0;
         for (int i = 0; i < invoices.length; i++) {

@@ -12,12 +12,11 @@ public class InvoiceReader {
             Scanner scanner = new Scanner(
                     new File("C:\\Users\\andra\\Desktop\\Java-Level-1\\src\\main\\com\\homework\\week9\\invoice\\service\\invoices.txt")
             );
-            for (int j = 0; j < 100; j++) {
-                if (j == 0) {
-                    scanner.nextLine();
-                } else {
-                    invoices[j-1] = makeInvoiceObjectFromString(scanner.nextLine());
-                }
+            scanner.nextLine();
+            int lineNumber = 0;
+            while (scanner.hasNextLine()) {
+                invoices[lineNumber] = mapToInvoice(scanner.nextLine());
+                lineNumber++;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -26,14 +25,9 @@ public class InvoiceReader {
 
     }
 
-    private Invoice makeInvoiceObjectFromString(String invoiceRow) {
-        Invoice invoice = new Invoice();
+    private Invoice mapToInvoice(String invoiceRow) {
         String[] invoiceParams = invoiceRow.split(",");
-
-        invoice.setId(invoiceParams[0]);
-        invoice.setAmount(Long.parseLong(invoiceParams[1]));
-        invoice.setInvoiceType(InvoiceType.getEnumByString(invoiceParams[2]));
-        invoice.setCode(invoiceParams[3]);
+        Invoice invoice = new Invoice(invoiceParams[0], Long.parseLong(invoiceParams[1]), InvoiceType.valueOf(invoiceParams[2]), invoiceParams[3]);
         return invoice;
     }
 
