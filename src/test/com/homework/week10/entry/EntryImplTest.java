@@ -10,16 +10,8 @@ class EntryImplTest {
 
     @Test
     public void testWhenKyeIsStringType() {
-        EntryImpl<String, Integer> entry = new EntryImpl<>();
-        entry.key("custom text");
+        Entry<String, Integer> entry = new EntryImpl<>("custom text", 12);
         Assertions.assertTrue(entry.key() instanceof String);
-    }
-
-    @Test
-    public void testWhenValueIsStringType() {
-        EntryImpl<String, Integer> entry = new EntryImpl<>();
-        entry.value(12);
         Assertions.assertTrue(entry.value() instanceof Integer);
     }
-
 }
