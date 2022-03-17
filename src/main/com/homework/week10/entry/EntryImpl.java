@@ -19,12 +19,4 @@ public class EntryImpl<K, V> implements Entry<K, V> {
     public V value() {
         return value;
     }
-
-    public void key(K key) {
-        this.key = key;
-    }
-
-    public void value(V value) {
-        this.value = value;
-    }
 }
