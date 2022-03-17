@@ -18,12 +18,4 @@ public class ServletRequestImpl implements ServletRequest {
     public String getBody() {
         return body;
     }
-
-    public void setContentLength(int contentLength) {
-        this.contentLength = contentLength;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
 }

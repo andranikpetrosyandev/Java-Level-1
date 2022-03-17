@@ -21,21 +21,20 @@ class ServletRequestObjectFactoryTest {
 
     @Test
     public void testGet2Objects() {
-        ServletRequestImpl firstRequest = testObject.getObject();
-        ServletRequestImpl secondRequest = testObject.getObject();
-
+        ServletRequest firstRequest = testObject.getObject();
+        ServletRequest secondRequest = testObject.getObject();
         Assertions.assertNotEquals(firstRequest.getBody(), secondRequest.getBody());
-        Assertions.assertNotEquals(secondRequest.getContentLength(), secondRequest.getContentLength());
+        Assertions.assertNotEquals(firstRequest.getContentLength(), secondRequest.getContentLength());
     }
 
     @Test
     public void testGet3Objects() {
-        ServletRequestImpl firstRequest = testObject.getObject();
-        ServletRequestImpl secondRequest = testObject.getObject();
-        ServletRequestImpl thirdRequest = testObject.getObject();
+        ServletRequest firstRequest = testObject.getObject();
+        ServletRequest secondRequest = testObject.getObject();
+        ServletRequest thirdRequest = testObject.getObject();
         Assertions.assertNotEquals(firstRequest.getBody(), secondRequest.getBody());
         Assertions.assertNotEquals(firstRequest.getBody(), thirdRequest.getBody());
-        Assertions.assertNotEquals(secondRequest.getContentLength(), secondRequest.getContentLength());
+        Assertions.assertNotEquals(firstRequest.getContentLength(), secondRequest.getContentLength());
         Assertions.assertNotEquals(secondRequest.getContentLength(), thirdRequest.getContentLength());
     }
 
