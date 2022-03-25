@@ -32,7 +32,7 @@ public class FileSourceOrderRepository implements CrudRepository<Order, Integer>
         while (reader.hasNextLine()) {
             String data = reader.nextLine();
             String[] splitOrderInfo = data.split(",");
-            if (splitOrderInfo.length > 1) {
+            if (splitOrderInfo.length > 3) {
                 if (orderId.equals(Integer.parseInt(splitOrderInfo[0]))) {
                     order = new Order(Integer.parseInt(splitOrderInfo[0]), splitOrderInfo[1], Integer.parseInt(splitOrderInfo[2]), userRepository.findById(splitOrderInfo[3]));
                 }

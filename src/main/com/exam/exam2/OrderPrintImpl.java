@@ -7,7 +7,7 @@ import java.util.List;
 public class OrderPrintImpl {
 
     public void printOrder(int orderId) {
-        OrderPrinterRunnable orderPrinterRunnable = new OrderPrinterRunnable(orderId, new FileSourceOrderRepository(FileSourceUserRepository.getInstance()));
+        Runnable orderPrinterRunnable = new OrderPrinterRunnable(orderId, new FileSourceOrderRepository(FileSourceUserRepository.getInstance()));
         orderPrinterRunnable.run();
     }
 
