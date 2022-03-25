@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class FileSourceUserRepositoryTest {
-    FileSourceUserRepository testSubject;
+    private FileSourceUserRepository testSubject;
 
     @BeforeEach
     public void setUp() {
@@ -28,6 +28,8 @@ class FileSourceUserRepositoryTest {
     @Test
     public void testFindByIdWhenIdIsFound() {
         Assertions.assertEquals("impossibleimmediate", testSubject.findById("impossibleimmediate").getId());
+        Assertions.assertEquals("Kara", testSubject.findById("impossibleimmediate").getFirstName());
+        Assertions.assertEquals("Ayaan", testSubject.findById("impossibleimmediate").getLastName());
 
     }
 

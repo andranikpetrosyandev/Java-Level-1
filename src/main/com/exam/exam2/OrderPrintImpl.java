@@ -7,7 +7,7 @@ import java.util.List;
 public class OrderPrintImpl {
 
     public void printOrder(int orderId) {
-        OrderPrinterRunnable orderPrinterRunnable = new OrderPrinterRunnable(orderId, new FileSourceOrderRepository());
+        OrderPrinterRunnable orderPrinterRunnable = new OrderPrinterRunnable(orderId, new FileSourceOrderRepository(FileSourceUserRepository.getInstance()));
         orderPrinterRunnable.run();
     }
 
@@ -15,7 +15,7 @@ public class OrderPrintImpl {
 
         List<Runnable> runnable = new ArrayList<>();
         for (int i = from; i <= to; i++) {
-            runnable.add(new OrderPrinterRunnable(i, new FileSourceOrderRepository()));
+            runnable.add(new OrderPrinterRunnable(i, new FileSourceOrderRepository(FileSourceUserRepository.getInstance())));
         }
 
         Iterator<Runnable> iterator = runnable.iterator();

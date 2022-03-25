@@ -1,7 +1,16 @@
 package com.exam.exam2;
 
 public class User {
-    private String id;
+    private final String id;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     private String firstName;
     private String lastName;
 

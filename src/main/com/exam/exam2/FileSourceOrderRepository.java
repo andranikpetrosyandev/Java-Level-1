@@ -11,28 +11,33 @@ import java.util.Scanner;
 
 public class FileSourceOrderRepository implements CrudRepository<Order, Integer> {
 
-    private String filePath = "/home/andranik/IdeaProjects/NewLessons/src/main/com/exam/exam2/orders.txt";
+    private static final String filePath = "/home/andranik/IdeaProjects/NewLessons/src/main/com/exam/exam2/orders.txt";
+    private final CrudRepository<User, String> userRepository;
+
+    public FileSourceOrderRepository(CrudRepository<User, String> userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public @Nullable Order findById(Integer orderId) {
         Order order = null;
+        Scanner reader = null;
         try {
-            Scanner reader = new Scanner(new File(filePath));
-            reader.nextLine();
+            reader = new Scanner(new File(filePath));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("file " + filePath + " not found");
+        }
+        reader.nextLine();
 
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                String[] splitOrderInfo = data.split(",");
-                if (splitOrderInfo.length > 1) {
-                    if (Integer.parseInt(splitOrderInfo[0]) == orderId) {
-                        order = new Order(Integer.parseInt(splitOrderInfo[0]), splitOrderInfo[1], Integer.parseInt(splitOrderInfo[2]), FileSourceUserRepository.getInstance().findById(splitOrderInfo[3]));
-                    }
+        while (reader.hasNextLine()) {
+            String data = reader.nextLine();
+            String[] splitOrderInfo = data.split(",");
+            if (splitOrderInfo.length > 1) {
+                if (orderId.equals(Integer.parseInt(splitOrderInfo[0]))) {
+                    order = new Order(Integer.parseInt(splitOrderInfo[0]), splitOrderInfo[1], Integer.parseInt(splitOrderInfo[2]), userRepository.findById(splitOrderInfo[3]));
                 }
             }
-        } catch (FileNotFoundException e) {
-
         }
-
         return order;
     }
 
@@ -40,18 +45,19 @@ public class FileSourceOrderRepository implements CrudRepository<Order, Integer>
     public List<Order> findAll() {
         List<Order> orders = new ArrayList<>();
 
+        Scanner reader = null;
         try {
-            Scanner reader = new Scanner(new File(filePath));
-            reader.nextLine();
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                String[] splitOrderInfo = data.split(",");
-                if (splitOrderInfo.length > 1) {
-                    orders.add(new Order(Integer.parseInt(splitOrderInfo[0]), splitOrderInfo[1], Integer.parseInt(splitOrderInfo[2]), FileSourceUserRepository.getInstance().findById(splitOrderInfo[3])));
-                }
-            }
+            reader = new Scanner(new File(filePath));
         } catch (FileNotFoundException e) {
-
+            throw new RuntimeException("file " + filePath + " not found");
+        }
+        reader.nextLine();
+        while (reader.hasNextLine()) {
+            String data = reader.nextLine();
+            String[] splitOrderInfo = data.split(",");
+            if (splitOrderInfo.length > 1) {
+                orders.add(new Order(Integer.parseInt(splitOrderInfo[0]), splitOrderInfo[1], Integer.parseInt(splitOrderInfo[2]), FileSourceUserRepository.getInstance().findById(splitOrderInfo[3])));
+            }
         }
 
         return orders;
@@ -60,22 +66,22 @@ public class FileSourceOrderRepository implements CrudRepository<Order, Integer>
 
     public List<Order> findAllByUserId(String userId) {
         List<Order> orders = new ArrayList<>();
+        Scanner reader = null;
         try {
-            Scanner reader = new Scanner(new File(filePath));
-            reader.nextLine();
-            reader.nextLine();
-
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                String[] splitOrderInfo = data.split(",");
-                if (splitOrderInfo[3].equals(userId)) {
-                    orders.add(new Order(Integer.parseInt(splitOrderInfo[0]), splitOrderInfo[1], Integer.parseInt(splitOrderInfo[2]), FileSourceUserRepository.getInstance().findById(splitOrderInfo[3])));
-                }
-            }
+            reader = new Scanner(new File(filePath));
         } catch (FileNotFoundException e) {
-
+            throw new RuntimeException("file " + filePath + " not found");
         }
+        reader.nextLine();
+        reader.nextLine();
 
+        while (reader.hasNextLine()) {
+            String data = reader.nextLine();
+            String[] splitOrderInfo = data.split(",");
+            if (splitOrderInfo[3].equals(userId)) {
+                orders.add(new Order(Integer.parseInt(splitOrderInfo[0]), splitOrderInfo[1], Integer.parseInt(splitOrderInfo[2]), FileSourceUserRepository.getInstance().findById(splitOrderInfo[3])));
+            }
+        }
         return orders;
     }
 }

@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileSourceOrderRepositoryTest {
 
-    FileSourceOrderRepository testSubject;
+    private FileSourceOrderRepository testSubject;
 
     @BeforeEach
     public void setUp() {
-        testSubject = new FileSourceOrderRepository();
+        testSubject = new FileSourceOrderRepository(FileSourceUserRepository.getInstance());
     }
 
     @Test
@@ -41,6 +41,8 @@ class FileSourceOrderRepositoryTest {
         Assertions.assertEquals(3, orders.size());
         while (iterator.hasNext()) {
             Assertions.assertEquals("shawlinspire", iterator.next().getPurchasedUser().getId());
+            Assertions.assertEquals("Janea", iterator.next().getPurchasedUser().getFirstName());
+            Assertions.assertEquals("Dawson", iterator.next().getPurchasedUser().getLastName());
         }
 
     }
