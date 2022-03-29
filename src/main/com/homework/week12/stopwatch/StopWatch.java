@@ -6,7 +6,7 @@ public class StopWatch {
     TimeFormatStrategy formatTimeStrategy;
 
     public StopWatch(DisplayType type) {
-        formatTimeStrategy = type.formatTime();
+        formatTimeStrategy = type.timeStrategy();
     }
 
     public void start() {

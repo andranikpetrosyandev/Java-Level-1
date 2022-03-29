@@ -2,8 +2,8 @@ package com.homework.week12.stopwatch;
 
 public class MilisecondsAndSecondFormat implements TimeFormatStrategy {
     @Override
-    public String formatTime(long miliseconds) {
-        long elapsedTimeInMillis = System.currentTimeMillis() - miliseconds;
+    public String formatTime(long milliseconds) {
+        long elapsedTimeInMillis = System.currentTimeMillis() - milliseconds;
         long seconds = elapsedTimeInMillis / 1000;
         long millis = elapsedTimeInMillis - seconds * 1000;
         String secondsString = seconds < 10 ? "0" + seconds : Long.toString(seconds);
