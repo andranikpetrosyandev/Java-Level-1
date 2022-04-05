@@ -9,7 +9,6 @@ public class EntryImpl<K, V> implements Entry<K, V> {
         this.value = value;
     }
 
-
     @Override
     public K key() {
         return key;
