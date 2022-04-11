@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class FileSourceUserRepository implements CrudRepository<User, String> {
     private static FileSourceUserRepository fileSourceUserRepository = null;
-    private static final String filePath = "/home/andranik/IdeaProjects/NewLessons/src/main/com/exam/exam2/users.txt";
+    private static final String filePath = "/home/andranik/IdeaProjects/NewLessons/src/main/java/com/exam/exam2/users.txt";
 
 
     private FileSourceUserRepository() {
