@@ -27,7 +27,7 @@ public class SQLGenerator {
             Field currentField = iterator.next();
             fieldNamesForSqlQuery += " " + currentField.getAnnotation(Column.class).name() + " " + ((iterator.hasNext()) ? "," : " ");
             try {
-                fieldValuesForSqlQuery += " " + getFieldValues(model, currentField.getName()).get(model) + ((iterator.hasNext()) ? "," : " ");
+                fieldValuesForSqlQuery += " " + getFieldValue(model, currentField.getName()).get(model) + ((iterator.hasNext()) ? "," : " ");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -47,7 +47,7 @@ public class SQLGenerator {
         }
     }
 
-    private Field getFieldValues(Model model, String name) {
+    private Field getFieldValue(Model model, String name) {
         Field field = null;
         Field[] declaredFields = model.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
