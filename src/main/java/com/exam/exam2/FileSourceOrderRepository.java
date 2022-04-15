@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class FileSourceOrderRepository implements CrudRepository<Order, Integer> {
 
-    private static final String filePath = "/home/andranik/IdeaProjects/NewLessons/src/main/com/exam/exam2/orders.txt";
+    private static final String filePath = "/home/andranik/IdeaProjects/NewLessons/src/main/java/com/exam/exam2/orders.txt";
     private final CrudRepository<User, String> userRepository;
 
     public FileSourceOrderRepository(CrudRepository<User, String> userRepository) {

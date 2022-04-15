@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner scanner = new Scanner(
-                new File("/home/andranik/IdeaProjects/NewLessons/src/main/com/classroom/week8/file/text.txt")
+                new File("/home/andranik/IdeaProjects/NewLessons/src/main/java/com/classroom/week8/file/text.txt")
         );
 
         System.out.println(scanner.nextLine());
