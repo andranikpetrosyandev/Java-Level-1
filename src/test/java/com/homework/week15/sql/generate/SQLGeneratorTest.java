@@ -7,9 +7,10 @@ class SQLGeneratorTest {
 
     @Test
     public void testUserSqlGenerator() {
-        User user = new User("Andranik", 30, 1992);
+        User user = new User("test user", 30);
         SQLGenerator sqlGenerator = new SQLGenerator();
-        Assertions.assertEquals("Insert into users (  full_name , age  ) values (  Andranik, 30  );", sqlGenerator.generateInsert(user));
+        Assertions.assertEquals("Insert into users (  full_name , age  ) values (  'test user', '30'  );", sqlGenerator.generateInsert(user));
+        Assertions.assertEquals("Insert into users (  full_name , age  ) values (  'test user', '30'  );", sqlGenerator.generateInsert(user));
     }
 
 }

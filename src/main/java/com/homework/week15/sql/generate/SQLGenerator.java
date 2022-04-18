@@ -7,44 +7,55 @@ import java.util.List;
 
 public class SQLGenerator {
 
-    private List<Field> modelFields = new ArrayList<>();
-    private String queryString = "";
-    private String fieldNamesForSqlQuery = "";
-    private String fieldValuesForSqlQuery = "";
 
     public String generateInsert(Model model) {
+        String queryString = "";
         getFields(model);
         queryString += "Insert into " + getTableName(model) + " ( ";
-        executeFieldNamesAndValues(model);
-        queryString += fieldNamesForSqlQuery + ") values ( " + fieldValuesForSqlQuery + " );";
+
+        queryString += executeFieldName(model) + ") values ( " + executeFieldValues(model) + " );";
         return queryString;
     }
 
-    private void executeFieldNamesAndValues(Model model) {
-        Iterator<Field> iterator = modelFields.iterator();
-
+    private String executeFieldName(Model model) {
+        Iterator<Field> iterator = getFields(model).iterator();
+        String fieldNamesForSqlQuery = "";
         while (iterator.hasNext()) {
             Field currentField = iterator.next();
             fieldNamesForSqlQuery += " " + currentField.getAnnotation(Column.class).name() + " " + ((iterator.hasNext()) ? "," : " ");
+
+
+        }
+        return fieldNamesForSqlQuery;
+    }
+
+    private String executeFieldValues(Model model) {
+        Iterator<Field> iterator = getFields(model).iterator();
+        String fieldValuesForSqlQuery = "";
+        while (iterator.hasNext()) {
+            Field currentField = iterator.next();
             try {
-                fieldValuesForSqlQuery += " " + getFieldValue(model, currentField.getName()).get(model) + ((iterator.hasNext()) ? "," : " ");
+                fieldValuesForSqlQuery += " '" + getFieldValue(model, currentField.getName()).get(model) + ((iterator.hasNext()) ? "'," : "' ");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
 
         }
+        return fieldValuesForSqlQuery;
     }
 
     private String getTableName(Model model) {
         return model.getClass().getDeclaredAnnotation(Table.class).name();
     }
 
-    private void getFields(Model model) {
+    private List<Field> getFields(Model model) {
+        List<Field> modelFields = new ArrayList<>();
         for (Field declaredField : model.getClass().getDeclaredFields()) {
             if (declaredField.isAnnotationPresent(Column.class)) {
                 modelFields.add(declaredField);
             }
         }
+        return modelFields;
     }
 
     private Field getFieldValue(Model model, String name) {
