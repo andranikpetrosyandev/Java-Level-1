@@ -1,7 +1,6 @@
 package com.homework.week17.note.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -18,7 +17,7 @@ public class Note {
     @Column(name = "text")
     private String text;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
 
@@ -62,5 +61,40 @@ public class Note {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Note note = (Note) o;
+
+        if (id != null ? !id.equals(note.id) : note.id != null) return false;
+        if (title != null ? !title.equals(note.title) : note.title != null) return false;
+        if (text != null ? !text.equals(note.text) : note.text != null) return false;
+        if (createdDate != null ? !createdDate.equals(note.createdDate) : note.createdDate != null) return false;
+        return user != null ? user.equals(note.user) : note.user == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", createdDate=" + createdDate +
+                ", user=" + user +
+                '}';
     }
 }
