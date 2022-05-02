@@ -8,6 +8,8 @@ import com.exam.exam3.service.core.UserPlateNumberCreateParams;
 import com.exam.exam3.service.core.UserPlateNumberService;
 import com.exam.exam3.service.core.UserService;
 
+import javax.transaction.Transactional;
+
 public class PlateNumberRegistrationFacadeImpl implements PlateNumberRegistrationFacade {
     private final UserService userService;
     private final PlateNumberService plateNumberService;
@@ -29,13 +31,12 @@ public class PlateNumberRegistrationFacadeImpl implements PlateNumberRegistratio
                 userByPassportNumber.getId(), plateNumber.getId()
         ));
 
-        System.out.println("asdasdasdasd");
-        System.out.println(userService.getById(userPlateNumber.getUser().getId()).getFirstName());
-//        System.out.println(userPlateNumber.getUser().getId());
-//        System.out.println(userPlateNumber.getPlateNumber().getId());
         return new PlateNumberRegistrationResponseDto(
-               "asdas", "adasda",
-                "!@",32);
+                userService.getById(userPlateNumber.getUser().getId()).getFirstName(),
+                userService.getById(userPlateNumber.getUser().getId()).getSecondName(),
+                userPlateNumber.getPlateNumber().getSeries(),
+                userPlateNumber.getPlateNumber().getNumber()
+        );
 
     }
 }
