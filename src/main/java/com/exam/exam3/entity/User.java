@@ -1,8 +1,11 @@
 package com.exam.exam3.entity;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 
 @Entity
+@Proxy(lazy=false)
 @Table(name = "users")
 public class User {
     @Id

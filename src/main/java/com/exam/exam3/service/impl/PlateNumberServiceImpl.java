@@ -6,8 +6,10 @@ import com.exam.exam3.service.core.PlateNumberCreateParams;
 import com.exam.exam3.service.core.PlateNumberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+@Service
 public class PlateNumberServiceImpl implements PlateNumberService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);

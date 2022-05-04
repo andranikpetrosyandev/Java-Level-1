@@ -7,18 +7,23 @@ import com.exam.exam3.service.core.PlateNumberService;
 import com.exam.exam3.service.core.UserPlateNumberCreateParams;
 import com.exam.exam3.service.core.UserPlateNumberService;
 import com.exam.exam3.service.core.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+@Component
 public class PlateNumberRegistrationFacadeImpl implements PlateNumberRegistrationFacade {
-    private final UserService userService;
-    private final PlateNumberService plateNumberService;
-    private final UserPlateNumberService userPlateNumberService;
+    @Autowired
+    private  UserService userService;
+    @Autowired
+    private  PlateNumberService plateNumberService;
+    @Autowired
+    private  UserPlateNumberService userPlateNumberService;
 
-    public PlateNumberRegistrationFacadeImpl(UserService userService, PlateNumberService plateNumberService, UserPlateNumberService userPlateNumberService) {
-        this.userService = userService;
-        this.plateNumberService = plateNumberService;
-        this.userPlateNumberService = userPlateNumberService;
+    public PlateNumberRegistrationFacadeImpl() {
+
     }
 
     @Override

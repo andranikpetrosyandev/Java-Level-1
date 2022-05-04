@@ -6,18 +6,21 @@ import com.exam.exam3.service.core.UserCreateParams;
 import com.exam.exam3.service.core.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    @Autowired
+    private UserRepository userRepository;
 
-    final private UserRepository userRepository;
+    public UserServiceImpl() {
 
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -39,7 +42,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long id) {
         Assert.notNull(id, "user id  should not be null");
-
         User userById = userRepository.getById(id);
         if (userById == null) {
             throw new UserNotFoundException(id);
