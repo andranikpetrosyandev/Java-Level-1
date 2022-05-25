@@ -21,10 +21,10 @@ class ButtonStateTest {
 
     @Test
     public void testChangeStateToOn() {
-    /*    buttonOnState = new ButtonOffState();
+       buttonOnState = new ButtonOffState();
         Assertions.assertEquals(buttonOnState.color(), ColorType.GRAY);
         Assertions.assertFalse(buttonOnState.isEnabled());
-*/
+
         ButtonState buttonState = buttonOnState.nextState();
 
         Assertions.assertEquals(buttonState.color(), ColorType.BLUE);
